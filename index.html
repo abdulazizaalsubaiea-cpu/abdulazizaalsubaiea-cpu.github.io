@@ -490,7 +490,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
 <!-- ================= SKILLS ================= -->
 <section id="skills" aria-labelledby="skillsT">
   <div class="wrap">
-    <div class="head reveal"><div><span class="eyebrow">Skills</span><h2 id="skillsT">Click a skill. See where I used it.</h2></div><p>Each skill links to the projects where I used it.</p></div>
+    <div class="head reveal"><div><span class="eyebrow">Skills</span><h2 id="skillsT">Click a skill. See where I used it.</h2></div><p>Requirements is selected to start.</p></div>
     <div class="explorer">
       <div class="groups glass reveal" id="groups"></div>
       <div class="used glass reveal" aria-live="polite" id="used">
@@ -516,7 +516,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
       </div>
       <div class="tl glass reveal">
         <ol>
-          <li><time>03/2025 &ndash; now</time><h3>Business Analyst (contract), Monshaat AI projects</h3><p>Requirements, acceptance tests, and six Arabic AI tools delivered. The HR assistant is in production.</p></li>
+          <li><time>03/2025 &ndash; now</time><h3>Business Analyst (contract), Monshaat AI projects</h3><p>Requirements and acceptance tests for six Arabic AI tools. Three are in use, including the HR assistant.</p></li>
           <li><time>11/2024 &ndash; 02/2025</time><h3>Business Analyst (co-op), Monshaat</h3><p>User stories with acceptance criteria for HR and Finance. Stand-ups, planning, reviews.</p></li>
           <li><time>2019 &ndash; 2025</time><h3>Bachelor of Information Technology</h3><p>Al-Imam Muhammad Ibn Saud Islamic University, Riyadh.</p></li>
           <li><time>Languages</time><h3>Arabic and English</h3><p>Arabic is my first language. I work in English every day.</p></li>
@@ -586,7 +586,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
 
   /* ---------- projects ---------- */
   var P = [
-    { id: 'hr', big: true, cat: 'assistants', name: 'Smart Assistant for Employees', tags: ['AI assistant', 'Launched Nov 2026'],
+    { id: 'hr', big: true, cat: 'assistants', name: 'Smart Assistant for Employees', tags: ['AI assistant', 'In use since Nov 2026'],
       line: 'Employees ask HR questions in Arabic and get answers from official policy, with the source. It can also check leave and submit requests.',
       win: ['98.5%', 'test pass rate, up from 80%'],
       problem: 'Employees kept asking HR the same questions. The answers sat in hundreds of long Arabic PDFs. A chatbot that guesses wasn’t an option. In government, a wrong answer about a rule does real damage.',
@@ -595,7 +595,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
       results: [['98.5%', 'pass rate on 406 test conversations; the old version scored 80%'], ['64 → 82', 'of 83 search checks passing'], ['~500', 'automated conversation tests in the full suite'], ['Nov 2026', 'launched for employees']],
       lesson: 'After a few days running, it started refusing questions it used to answer. 1,908 records had never been saved to the search index. I fixed it, checked all 32,908 records, and added a test so it can’t happen again.',
       stack: ['Python', 'FastAPI', 'LangGraph', 'ChromaDB', 'BGE-M3', 'BM25', 'Reranker', 'Whisper', 'Docker', 'GitLab CI'] },
-    { id: 'extract', cat: 'docs', name: 'Bank and License Document Reader', tags: ['Document AI', 'Delivered'],
+    { id: 'extract', cat: 'docs', name: 'Bank and License Document Reader', tags: ['Document AI', 'In use'],
       line: 'Reads bank certificates and licenses, including scans and phone photos, and fills a checked Arabic Excel report.',
       win: ['92.9%', 'accuracy, up from 7.7%'],
       problem: 'Staff typed IBANs, registration numbers and license details by hand from tens of thousands of documents. Some were scans, some were photos, and some had Arabic text stored backwards.',
@@ -610,19 +610,19 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
       problem: 'Branded Arabic presentations took days to put together. Tools that let AI draw the slides drift off-brand and can’t be trusted with numbers.',
       role: 'I defined the workflow and the rules each slide must follow, designed the system, built it and tested it.',
       built: ['The AI only writes a structured plan of the content. A fixed program builds the slides with the brand toolkit.', 'Every deck goes through brand and visual checks, with up to three automatic fixes.', 'A person approves each stage, and every version is saved.', 'A React interface with single sign-on, and a page that shows exactly what data leaves the machine.'],
-      results: [['9,800+', 'automated tests'], ['310/310', 'reference decks pass'], ['0', 'tracking; prompt text is never stored'], ['3', 'automatic fix attempts per deck']],
-      lesson: 'The machinery works. The weak spot is depth: generated slides are thinner than a human’s. So any claim without a source gets flagged for a person to check instead of going out.',
+      results: [['9,800+', 'automated tests'], ['310/310', 'reference decks pass'], ['3', 'automatic fix attempts per deck']],
+      lesson: 'The machinery works. The weak spot is depth. Generated slides are thinner than ones a person writes. So any claim without a source gets flagged for a person to check instead of going out.',
       stack: ['Python', 'FastAPI', 'Pydantic', 'JSON Schema', 'SQLite', 'python-pptx', 'React', 'TypeScript', 'Docker'] },
     { id: 'web', cat: 'assistants', name: 'Website Chatbot', tags: ['AI assistant', 'Built and tested'],
       line: 'Answers only from an organisation’s own website, always shows the source, and says so when it doesn’t know.',
       win: ['6/6', 'trick prompts refused in testing'],
       problem: 'An organisation wanted a chatbot for its website that would never make things up or wander off topic.',
       role: 'I set the scope and the refusal rules, designed and built it, and ran the evaluation.',
-      built: ['A polite crawl of about 5,900 public pages, respecting the site’s rules.', 'Search by meaning and keyword, with a score gate that refuses anything outside the site.', 'Sources are attached by the server, so the AI can’t invent a link. Protection against “ignore your rules” tricks.', 'A one-line website widget and an admin dashboard.'],
+      built: ['A slow crawl of about 5,900 public pages that follows the site’s robots.txt.', 'Search by meaning and keyword, with a score gate that refuses anything outside the site.', 'Sources are attached by the server, so the AI can’t invent a link. Protection against “ignore your rules” tricks.', 'A one-line website widget and an admin dashboard.'],
       results: [['487/487', 'in-scope test questions answered'], ['6/6', 'trick prompts refused'], ['+14%', 'faithfulness from picking the model by test'], ['521', 'questions in the evaluation']],
       lesson: 'An AI judge rated about 68% of answers fully grounded in the source. Getting that number up is the next job.',
       stack: ['Python', 'FastAPI', 'Qdrant', 'Groq', 'Docker Compose', 'pytest'] },
-    { id: 'sessions', cat: 'analytics', name: 'Advisory Session Analytics', tags: ['Analytics', 'Deployed internally'],
+    { id: 'sessions', cat: 'analytics', name: 'Advisory Session Analytics', tags: ['Analytics', 'In use internally'],
       line: 'Managers ask questions about thousands of recorded advisory sessions and get numbers, charts and real quotes.',
       win: ['14K+', 'sessions searchable in Arabic'],
       problem: 'A programme had more than 14,000 recorded advisory sessions and no way to learn from them.',
