@@ -293,6 +293,28 @@ h2 { font: 900 clamp(34px, 4.6vw, 60px)/1 var(--f-d); letter-spacing: -.035em; m
 .btn.line { background: transparent; color: inherit; border-color: currentColor; }
 footer { padding-block: 30px 40px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
 
+/* ---------- history heatmap ---------- */
+.hist { padding: 24px; display: grid; gap: 18px; }
+.hstats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.hstats div { padding: 14px 16px; border-radius: 14px; background: var(--glass-2); border: 1px solid var(--edge); }
+.hstats b { display: block; font: 900 clamp(30px, 3.4vw, 44px)/1 var(--f-d); letter-spacing: -.03em; color: var(--green); }
+.hstats span { font-size: 14px; color: var(--ink-2); }
+.heatwrap { overflow-x: auto; padding-bottom: 4px; }
+.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 20px); grid-auto-columns: 20px; gap: 4px; width: max-content; margin: 0 auto; }
+.heat i { width: 20px; height: 20px; border-radius: 5px; background: var(--green-soft); cursor: pointer; transition: transform .15s; }
+.heat i:hover, .heat i:focus-visible { transform: scale(1.35); outline: none; box-shadow: 0 0 0 2px var(--ink); }
+.heat i.x { background: transparent; cursor: default; }
+.heat .l1, .legend .l1 { background: color-mix(in srgb, var(--green) 35%, transparent); }
+.heat .l2, .legend .l2 { background: color-mix(in srgb, var(--green) 58%, transparent); }
+.heat .l3, .legend .l3 { background: color-mix(in srgb, var(--green) 80%, transparent); }
+.heat .l4, .legend .l4 { background: var(--green); }
+.legend .l0 { background: var(--green-soft); }
+.hfoot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font: 500 12.5px var(--f-m); color: var(--muted); }
+.legend { display: inline-flex; align-items: center; gap: 4px; }
+.legend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+.hnote { margin: 0; font-size: 14.5px; color: var(--ink-2); min-height: 1.6em; }
+@media (max-width: 640px) { .hstats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .heat { grid-template-rows: repeat(7, 8px); grid-auto-columns: 8px; gap: 2px; } .heat i { width: 8px; height: 8px; border-radius: 2px; } .hist { padding: 18px; } }
+
 /* ---------- toast + cursor ---------- */
 .toast { position: fixed; z-index: 80; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, calc(100% + 48px)); visibility: hidden; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; background: var(--ink); color: var(--bg); font: 600 15px var(--f-b); box-shadow: 0 16px 40px -12px rgba(0,0,0,.5); transition: transform .45s cubic-bezier(.2,1.3,.4,1); max-width: calc(100vw - 32px); }
 .toast.show { transform: translate(-50%, 0); visibility: visible; }
@@ -308,6 +330,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
 
 /* ---------- responsive ---------- */
 @media (max-width: 1040px) {
+  .heat { grid-template-rows: repeat(7, 13px); grid-auto-columns: 13px; gap: 3px; } .heat i { width: 13px; height: 13px; border-radius: 3px; }
   .hero-grid, .explorer, .about, .contact { grid-template-columns: minmax(0, 1fr); }
   .used { position: static; }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -340,6 +363,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
   .drawer { top: auto; height: 92vh; width: 100%; border-left: 0; border-top: 1px solid var(--edge); border-radius: 22px 22px 0 0; transform: translateY(104%); }
   .d-res { grid-template-columns: minmax(0, 1fr); }
   .contact::after { font-size: 300px; bottom: -18%; }
+  .heat { grid-template-rows: repeat(7, 8px); grid-auto-columns: 8px; gap: 2px; } .heat i { width: 8px; height: 8px; border-radius: 2px; }
 }
 @media (max-width: 400px) {
   .brand b { font-size: 14.5px; }
@@ -360,7 +384,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
   <div class="wrap">
     <div class="topbar glass">
       <a class="brand" href="#top" aria-label="Abdulaziz Alsubaiea, back to top"><span class="logo" aria-hidden="true">A</span><span><b>Abdulaziz Alsubaiea</b><small>Business Analyst &middot; Riyadh</small></span></a>
-      <nav aria-label="Sections"><ul class="nav"><li><a href="#work">Work</a></li><li><a href="#skills">Skills</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+      <nav aria-label="Sections"><ul class="nav"><li><a href="#work">Work</a></li><li><a href="#history">History</a></li><li><a href="#skills">Skills</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></nav>
       <nav class="mnav show-sm" aria-label="Sections"><a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#contact">Contact</a><button class="theme-btn mtheme" type="button" aria-label="Switch colour theme"><span class="theme-lbl">Dark</span></button></nav>
       <div class="tools">
         <button class="btn small mag theme-btn hide-sm" type="button" aria-label="Switch colour theme"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="theme-lbl">Dark</span></button>
@@ -381,7 +405,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
       <div class="cta">
         <a class="btn big solid mag" href="#work">See what I built <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <button class="btn big mag copy" type="button"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="2"/></svg>Copy email</button>
-        <a class="btn big mag" href="https://github.com/abdulazizaalsubaiea-cpu" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.83-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.66 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub</a>
+        <a class="btn big mag" href="#history"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 2v4m8-4v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Work history</a>
       </div>
       <ul class="facts"><li>Business Analyst (contract), Monshaat AI projects</li><li>IT degree, Imam University</li><li>Arabic and English</li></ul>
     </div>
@@ -468,11 +492,29 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
         </ul>
       </article>
       <article class="cell glass c-h tilt reveal">
-        <span class="k">Open source</span>
+        <span class="k">Personal project</span>
         <span class="n" style="font-size:clamp(28px,2.6vw,36px);line-height:1.05">AI Study Companion</span>
-        <p>A tutor app I built for myself. The code is public.</p>
+        <p>A tutor app I built for myself to learn AI properly.</p>
         <button class="more" type="button" data-open="study">Read how &rarr;</button>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HISTORY ================= -->
+<section id="history" aria-labelledby="histT">
+  <div class="wrap">
+    <div class="head reveal"><div><span class="eyebrow">Work history</span><h2 id="histT">Where the time went</h2></div><p>Most of this code sits on my employer's internal servers and the rest is private, so none of it is public. This is my real commit history: my own commits only, no code or project names.</p></div>
+    <div class="hist glass reveal">
+      <div class="hstats">
+        <div><b>776</b><span>commits</span></div>
+        <div><b>90</b><span>days with commits</span></div>
+        <div><b>14</b><span>days in my longest streak</span></div>
+        <div><b>6</b><span>projects</span></div>
+      </div>
+      <div class="heatwrap"><div class="heat" id="heat" role="img" aria-label="Commit calendar from April 2026 to November 2026"></div></div>
+      <div class="hfoot"><span id="hRange"></span><span class="legend" aria-hidden="true">Less <i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> More</span></div>
+      <p class="hnote" id="hTip">Hover or tap a square to see the day.</p>
     </div>
   </div>
 </section>
@@ -538,7 +580,7 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
       <div class="c-box">
         <a class="email" id="emailText" href="mailto:abdulaziz.a.alsubaiea@gmail.com">abdulaziz.a.alsubaiea@gmail.com</a>
         <button class="btn big light mag copy" type="button">Copy email</button>
-        <a class="btn big line mag" href="https://github.com/abdulazizaalsubaiea-cpu" target="_blank" rel="noopener noreferrer">See my GitHub</a>
+        <a class="btn big line mag" href="#work">Back to my projects</a>
       </div>
     </div>
   </div>
@@ -640,15 +682,15 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
       results: [['423', 'automated tests'], ['13', 'database schemas'], ['139', 'plan issues fixed'], ['0', 'answers yet: still being built']],
       lesson: 'Fixing 139 problems in the plan meant none of them made it into the code.',
       stack: ['Python', 'PostgreSQL', 'pgvector', 'SQLAlchemy', 'Alembic', 'Pydantic'] },
-    { id: 'study', cat: 'genai', name: 'AI Study Companion', tags: ['Personal', 'Public code'],
+    { id: 'study', cat: 'genai', name: 'AI Study Companion', tags: ['Personal', 'In use'],
       line: 'A study app that teaches 42 AI concepts with a tutor that asks you questions instead of handing out answers.',
       win: ['42', 'concepts with tests and a final exam'],
       problem: 'I wanted a structured way to learn AI properly, with someone checking I actually understood each idea.',
       role: 'My own project: I planned it, built it and use it.',
       built: ['A tutor that only talks about the concept on screen and asks guiding questions.', 'Graded understanding checks, module tests and a final exam.', 'A dashboard that tells you what to study next. Progress is saved per learner.', 'Cost limits: a password, message caps and a daily limit.'],
-      results: [['42', 'concepts'], ['Public', 'code on GitHub']],
+      results: [['42', 'concepts'], ['3', 'kinds of checks: quizzes, module tests, final exam']],
       lesson: '',
-      stack: ['Python', 'Streamlit', 'Claude API', 'PostgreSQL'], link: 'https://github.com/abdulazizaalsubaiea-cpu/ai-study-companion' },
+      stack: ['Python', 'Streamlit', 'Claude API', 'PostgreSQL'] },
     { id: 'data', cat: 'docs', name: 'Arabic Data Pipelines', tags: ['Data', 'Completed'],
       line: 'Collected public government services, regulations and book catalogues into clean datasets for an AI knowledge base.',
       win: ['147', 'training documents turned into searchable text'],
@@ -729,6 +771,27 @@ footer { padding-block: 30px 40px; display: flex; justify-content: space-between
     }
   });
   document.querySelectorAll('[data-open]').forEach(function (b) { b.addEventListener('click', function () { openP(b.dataset.open, b); }); });
+
+  /* ---------- commit heatmap ---------- */
+  var HD = {"2026-04-28": 17, "2026-04-29": 2, "2026-04-30": 13, "2026-05-01": 4, "2026-05-03": 5, "2026-05-04": 6, "2026-05-07": 8, "2026-05-09": 10, "2026-05-10": 2, "2026-05-14": 31, "2026-05-17": 33, "2026-05-18": 53, "2026-05-19": 14, "2026-05-20": 8, "2026-05-21": 1, "2026-06-03": 5, "2026-06-06": 3, "2026-06-07": 11, "2026-06-09": 3, "2026-06-11": 4, "2026-06-12": 11, "2026-06-16": 12, "2026-06-17": 18, "2026-06-21": 8, "2026-07-06": 15, "2026-07-07": 18, "2026-07-08": 11, "2026-07-11": 4, "2026-07-12": 3, "2026-07-14": 4, "2026-07-15": 3, "2026-07-16": 13, "2026-07-17": 2, "2026-07-22": 1, "2026-07-27": 4, "2026-07-28": 20, "2026-07-29": 9, "2026-08-01": 2, "2026-08-05": 8, "2026-08-06": 33, "2026-08-07": 5, "2026-08-08": 7, "2026-08-09": 3, "2026-08-10": 3, "2026-08-11": 5, "2026-08-12": 18, "2026-08-13": 16, "2026-08-14": 33, "2026-08-15": 21, "2026-08-16": 1, "2026-08-17": 9, "2026-08-18": 5, "2026-08-23": 15, "2026-08-24": 10, "2026-08-25": 2, "2026-08-26": 7, "2026-08-27": 3, "2026-08-30": 12, "2026-08-31": 20, "2026-09-01": 8, "2026-09-02": 8, "2026-09-03": 1, "2026-09-05": 1, "2026-09-06": 4, "2026-09-07": 5, "2026-09-08": 2, "2026-09-09": 2, "2026-09-13": 3, "2026-09-15": 2, "2026-09-17": 2, "2026-10-05": 5, "2026-10-15": 3, "2026-10-16": 1, "2026-10-17": 2, "2026-10-18": 9, "2026-10-20": 13, "2026-10-21": 13, "2026-10-22": 4, "2026-10-23": 3, "2026-10-26": 6, "2026-10-27": 6, "2026-10-28": 16, "2026-10-29": 4, "2026-11-01": 1, "2026-11-03": 10, "2026-11-04": 2, "2026-11-07": 4, "2026-11-09": 5, "2026-11-10": 3, "2026-11-11": 1};
+  (function () {
+    var heat = $('heat'); if (!heat) return;
+    var first = new Date('2026-04-28' + 'T00:00:00'), last = new Date('2026-11-11' + 'T00:00:00');
+    var start = new Date(first); start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
+    var fmt = function (d) { return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }); };
+    var iso = function (d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); };
+    var html = '';
+    for (var d = new Date(start); d <= last || d.getDay() !== 1; d.setDate(d.getDate() + 1)) {
+      if (d < first || d > last) { html += '<i class="x" aria-hidden="true"></i>'; continue; }
+      var n = HD[iso(d)] || 0, lv = n === 0 ? 0 : n <= 2 ? 1 : n <= 5 ? 2 : n <= 10 ? 3 : 4;
+      var label = fmt(d) + ': ' + (n ? n + ' commit' + (n > 1 ? 's' : '') : 'no commits');
+      html += '<i class="l' + lv + '" tabindex="0" data-t="' + label + '" title="' + label + '"></i>';
+    }
+    heat.innerHTML = html;
+    function show(e) { var t = e.target.closest && e.target.closest('i[data-t]'); if (t) $('hTip').textContent = t.dataset.t; }
+    heat.addEventListener('pointerover', show); heat.addEventListener('focusin', show); heat.addEventListener('click', show);
+    $('hRange').textContent = '28 Apr 2026 to 11 Nov 2026';
+  })();
 
   /* ---------- skills explorer ---------- */
   var SK = [
